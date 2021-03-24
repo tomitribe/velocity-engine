@@ -702,17 +702,20 @@
   <!-- =================================================================== -->
   <!-- Deploy Maven artifacts  - custom repository                        -->
   <!-- =================================================================== -->
-  <target name="maven-deploy-custom-repository" depends="maven-prepare" if="maven.remote.repository"
+  <target name="maven-deploy-custom-repository" depends="maven-prepare,publish.auth" if="maven.remote.repository"
     description="Deploys the Maven artifacts in local repository">
 
     <echo>Deploying to ${maven.remote.repository}</echo>
 
     <artifact:deploy file="${build.dir}/${project}-${version}.jar" >
-        <remoteRepository id="velocity.custom.repository" url="${maven.remote.repository}"/>
+        <remoteRepository id="velocity.custom.repository" url="${maven.remote.repository}">
+            <authentication username="${username}" password="${password}" privateKey="${user.home}/.ssh/id_dsa"/>
+        </remoteRepository>
         <pom refid="maven.project"/>
         <attach file="${build.dir}/${project}-${version}-sources.jar" type="jar" classifier="sources"/>
         <attach file="${build.dir}/${project}-${version}-dep.jar" type="jar" classifier="dep"/>
         <attach file="${build.dir}/${project}-${version}-javadoc.jar" type="jar" classifier="javadoc"/>
+
     </artifact:deploy>
   </target>
 

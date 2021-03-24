@@ -9,3 +9,5 @@
 *.log
 *.vscode
 bin/
+@build.test@/
+target/
