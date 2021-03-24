@@ -25,6 +25,13 @@
   </properties>
 
   <body>
+      <release version="1.7.1-TT.0">
+          <action type="fix">
+              Backport fix for CVE-2020-13936
+          </action>
+      </release>
+
+
     <release version="1.7" date="2010-11-20">
       <action type="fix" dev="cbrisson" issue="VELOCITY-785" due-to="Jarkko Viinamäki">
         Fixed quotes escaping so that doubling single quotes only works when enclosing quotes are single quotes
